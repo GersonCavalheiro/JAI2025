@@ -1,0 +1,7 @@
+[package]
+name = "produtor_consumidor_canal_unico"
+version = "0.1.0"
+edition = "2021" # Or any other edition you are using
+
+[dependencies]
+rand = "0.8.5" # Or the version you want to use
