@@ -27,7 +27,7 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 - `C++/`: exemplos em C++20.
 - `Rust/`: exemplos em Rust, utilizando o ecossistema `cargo`.
 - `Go/`: exemplos em Go.
-- `Elixir/`: exemplos em arquivos `.ex` simples.
+- `Elixir/`: exemplos em Elixir.
 
 Cada diretório de linguagem possui um `Makefile`. O comando `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc.
 
