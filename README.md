@@ -1,3 +1,61 @@
-# JAI2025
-# JAI2025
-# JAI2025
+# Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas — JAI 2025
+
+Este repositório contém o material de apoio ao curso **Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas**, ministrado por **Gerson Geraldo H. Cavalheiro**, **André Rauber Du Bois** e **Alessandro Baldassin** durante as **Jornadas de Atualização em Informática 2025 (JAI 2025)**.
+
+O conteúdo do repositório está organizado por linguagem de programação e tem como objetivo ilustrar os modelos de concorrência e abstrações de cada linguagem. As implementações buscam destacar os recursos das linguagens C++20, Rust, Go e Elixir, não havendo preocupação específica com desempenho.
+
+## Citação
+
+Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo:
+
+```bibtex
+@inproceedings{cavalheiro2025multithread,
+  author    = {Gerson Geraldo H. Cavalheiro and André Rauber Du Bois and Alessandro Baldassin},
+  title     = {Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas},
+  booktitle = {Anais das Jornadas de Atualização em Informática (JAI 2025)},
+  editor    = {Soraia Raupp Musse and Alexandre Santos},
+  publisher = {Sociedade Brasileira de Computação (SBC)},
+  address   = {Porto Alegre},
+  year      = {2025}
+}
+```
+
+## Estrutura do Repositório
+
+- `Docker/`: contém um `Dockerfile` com os compiladores e versões utilizadas no curso.
+- `C++/`: exemplos em C++20.
+- `Rust/`: exemplos usando o ecossistema `cargo`.
+- `Go/`: programas organizados como arquivos `.go` únicos.
+- `Elixir/`: exemplos em arquivos `.ex` simples.
+
+Cada diretório de linguagem possui um `Makefile`. O comando `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc.
+
+## Executando em Container com Docker
+
+O repositório fornece um ambiente Docker que já inclui todos os compiladores e ferramentas necessárias. Para utilizar:
+
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/usuario/repositorio-multithread-jai2025.git
+   cd repositorio-multithread-jai2025/Docker
+   ```
+
+2. Construa a imagem Docker:
+   ```sh
+   docker build -t multithread-jai2025 .
+   ```
+
+3. Execute o container interativamente:
+   ```sh
+   docker run -it --rm -v "$PWD/..:/app" -w /app multithread-jai2025 bash
+   ```
+
+   Isso montará o conteúdo do repositório no container e abrirá um terminal para executar os `Makefile`s.
+
+## Observações
+
+- As implementações focam em clareza e variedade de modelos de concorrência, não sendo otimizadas para benchmarks.
+- Para rodar os programas fora do container, é necessário ter as ferramentas equivalentes instaladas: `g++` com suporte a C++20, `cargo`, `go`, `elixir` e `erl`.
+
+---
+Sociedade Brasileira de Computação (SBC), JAI 2025.
