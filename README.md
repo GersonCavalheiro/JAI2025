@@ -33,12 +33,12 @@ Cada diretório de linguagem possui um `Makefile`. O comando `make run` executa 
 
 ## Executando em Container com Docker
 
-O repositório fornece um ambiente Docker que já inclui todos as ferramentas necessárias para exploração das linguagens, incluindo também `vim` e `tmux`. As versões disponibilizadas destas ferramentas são as utilizadas para preparar os exemplos. Para utilizar:
+O repositório fornece um ambiente Docker que já inclui todos as ferramentas necessárias para exploração das linguagens, incluindo também `vim` e `tmux`. As versões disponibilizadas destas ferramentas são as utilizadas para preparar os exemplos. Para utilizar, primeiro certifique-se de possuir o Docker instalado (consulte https://www.docker.com/get-started) (a sequência a seguir foi executada sob GNU-Linux com Ubuntu 20.04):
 
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/usuario/repositorio-multithread-jai2025.git
-   cd repositorio-multithread-jai2025/Docker
+   git clone https://github.com/GersonCavalheiro/JAI2025
+   cd JAI2025/Docker
    ```
 
 2. Construa a imagem Docker:
