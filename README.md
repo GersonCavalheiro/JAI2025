@@ -1,6 +1,6 @@
 # Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas — JAI 2025
 
-Este repositório contém o material de apoio ao curso **Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas**, ministrado por **Gerson Geraldo H. Cavalheiro**, **André Rauber Du Bois** e **Alessandro Baldassin** durante as **Jornadas de Atualização em Informática 2025 (JAI 2025)**.
+Este repositório contém o material de apoio ao curso **Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas**, ministrado por **Gerson Geraldo H. Cavalheiro**, **André Rauber Du Bois** e **Alessandro Baldassin** durante as **Jornadas de Atualização em Informática 2025 (JAI 2025)** (Congresso da Sociedade Brasileira de Computação 2025).
 
 O conteúdo do repositório está organizado por linguagem de programação e tem como objetivo ilustrar os modelos de concorrência e abstrações de cada linguagem. As implementações buscam destacar os recursos das linguagens C++20, Rust, Go e Elixir, não havendo preocupação específica com desempenho.
 
@@ -23,16 +23,17 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 ## Estrutura do Repositório
 
 - `Docker/`: contém um `Dockerfile` com os compiladores e versões utilizadas no curso.
+- `files/`: contém arquivos auxiliares de entrada para os exemplos
 - `C++/`: exemplos em C++20.
-- `Rust/`: exemplos usando o ecossistema `cargo`.
-- `Go/`: programas organizados como arquivos `.go` únicos.
+- `Rust/`: exemplos em Rust, utilizando o ecossistema `cargo`.
+- `Go/`: exemplos em Go.
 - `Elixir/`: exemplos em arquivos `.ex` simples.
 
 Cada diretório de linguagem possui um `Makefile`. O comando `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc.
 
 ## Executando em Container com Docker
 
-O repositório fornece um ambiente Docker que já inclui todos os compiladores e ferramentas necessárias. Para utilizar:
+O repositório fornece um ambiente Docker que já inclui todos as ferramentas necessárias para exploração das linguagens, incluindo também `vim` e `tmux`. As versões disponibilizadas destas ferramentas são as utilizadas para preparar os exemplos. Para utilizar:
 
 1. Clone este repositório:
    ```sh
