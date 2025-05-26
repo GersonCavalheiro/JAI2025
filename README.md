@@ -9,7 +9,7 @@ O conteúdo do repositório está organizado por linguagem de programação e te
 Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo:
 
 ```bibtex
-@inproceedings{cavalheiro2025multithread,
+@chapter{cavalheiro2025multithread,
   author    = {Gerson Geraldo H. Cavalheiro and André Rauber Du Bois and Alessandro Baldassin},
   title     = {Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas},
   booktitle = {Anais das Jornadas de Atualização em Informática (JAI 2025)},
