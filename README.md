@@ -22,13 +22,14 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 
 ## Estrutura do Repositório
 
+- `README.md`: este arquivo.
 - `Docker/`: contém um `Dockerfile` com os compiladores e versões utilizadas no curso.
 - `files/`: contém arquivos auxiliares de entrada para os exemplos
 - `C++/`: exemplos em C++20.
 - `Rust/`: exemplos em Rust, utilizando o ecossistema `cargo`.
 - `Go/`: exemplos em Go.
 - `Elixir/`: exemplos em Elixir.
-- `Makefile`: gera os executáveis para C++20, Rust e Go e também possui o alvo `clean`
+- `Makefile`: gera os executáveis para C++20, Rust e Go e também possui o alvo `clean`.
 
 Cada diretório de linguagem possui um `Makefile`. O comando `make` constroi os executáveis (exceto em Elixir) e `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc. É importante observar que os recursos utilizados são os disponibilizados nas últimas versões disponíveis das linguagens C++, Rust, Go e Elixir. Caso não tenha disponível no seu sistema as últimas versões destas linguagens, é sugerido utilizar a imagem docker fornecida.
 
@@ -42,7 +43,7 @@ O repositório fornece um ambiente Docker que já inclui todos as ferramentas ne
    cd JAI2025/Docker
    ```
 
-2. Construa a imagem Docker:
+2. Construa a imagem Docker (uns 6 minutos, em rede cabeada):
    ```sh
    docker build -t multithread-jai2025 .
    ```

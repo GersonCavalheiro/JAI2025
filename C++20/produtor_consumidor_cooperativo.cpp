@@ -1,3 +1,37 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa, escrito em C++20, implementa o problema clássico Produtor-Consumidor utilizando `std::jthread` e cancelamento cooperativo com `std::stop_token`. Produtores geram números primos, inserindo-os em um buffer compartilhado. Consumidores consomem os itens produzidos. O término dos consumidores é coordenado de forma cooperativa, após todos os produtores finalizarem sua tarefa.
+
+Parâmetros de Lançamento
+
+O programa recebe três argumentos obrigatórios:
+
+1. `total`: quantidade de números primos a serem produzidos por cada produtor.
+2. `num_produtores`: número de threads produtoras.
+3. `num_consumidores`: número de threads consumidoras.
+
+Exemplo de uso:
+./produtor_consumidor_cooperativo 5 2 2
+
+
+Esse comando cria 2 produtores, cada um gerando 5 números primos, e 2 consumidores para processar os dados.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::jthread`**: threads com gerenciamento automático e suporte embutido a cancelamento cooperativo via `stop_token`.
+- **`std::mutex` e `std::condition_variable`**: controle de acesso ao buffer compartilhado (`std::queue<int> buffer`) e sincronização entre produtores e consumidores.
+- **Cancelamento cooperativo**:
+  - Os consumidores verificam periodicamente `stop_requested()` e também são liberados de `cv.wait()` pela chamada a `cv.notify_all()` após o término dos produtores.
+  - Os produtores verificam o `stop_token` dentro de seus laços principais.
+
+Essa implementação demonstra um modelo moderno de cancelamento cooperativo em C++20 com `jthread`, simplificando a gerência de ciclo de vida das threads e oferecendo um exemplo robusto de comunicação entre threads com variável de condição.
+*/
+
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -66,20 +100,17 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < num_consumidores; ++i)
         consumidores.emplace_back(consumidor, i + 1);
 
-    // Aguarda todos os produtores terminarem
     for (auto& p : produtores) {
         if (p.joinable())
             p.join();  // jthread também dá join() automaticamente no destrutor, mas aqui é explícito
     }
 
-    // Solicita parada dos consumidores
     for (auto& c : consumidores) {
         c.request_stop();
     }
 
-    // Notifica todos consumidores para saírem de wait
     cv.notify_all();
 
-    // jthread faz join automaticamente
+    return 0;// jthread faz join automaticamente
 }
 

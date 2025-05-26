@@ -1,3 +1,37 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa, escrito em C++20, implementa uma versão concorrente do Jogo da Vida de Conway, com a divisão do grid global em blocos distribuídos entre várias threads. Cada bloco evolui independentemente, e as threads responsáveis por sua atualização operam de forma paralela. A troca de fronteiras entre blocos ainda não está implementada neste exemplo, o que limita a precisão da simulação ao longo do tempo, mas ilustra a estrutura geral de divisão de trabalho.
+
+Parâmetros de Lançamento
+
+O programa recebe três argumentos obrigatórios:
+
+1. `dimensao`: dimensão \( N \) do grid global, assumido como um quadrado \( N \times N \).
+2. `divisoes`: número de divisões \( D \) em cada direção, totalizando \( D^2 \) blocos e threads.
+3. `iteracoes`: número de iterações (gerações) do Jogo da Vida.
+
+Exemplo de uso:
+./jogo_da_vida 40 4 10
+
+Esse comando divide um grid de 40x40 em 16 blocos de 10x10, cada um processado por uma thread, e executa 10 iterações do autômato celular.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread`**: cada bloco do grid é manipulado por uma thread distinta.
+- **Sincronização por `std::mutex`**: utilizada para escrita simultânea nas estruturas de saída (como o grid global impresso).
+- **Estrutura `Mailbox` com `std::condition_variable`**: embora preparada para permitir troca de mensagens entre blocos (como fronteiras), ainda não está integrada ao cálculo da vizinhança.
+- **Funções `print_block` e `print_grid`**: permitem consolidar os resultados parciais de cada bloco no grid global de maneira segura.
+
+Esta implementação demonstra o uso básico de paralelismo em C++ com threads explícitas, organizadas de forma estruturada, com uma infraestrutura de comunicação entre blocos que pode ser estendida para suportar sincronização completa entre vizinhos. A ausência de troca de fronteiras significa que os blocos processam suas células com base apenas no seu conteúdo interno.
+
+Essa versão serve como ponto de partida para versões mais completas com interação entre blocos ou modelos com sobreposição de fronteiras.
+*/
+
 #include <iostream>
 #include <vector>
 #include <thread>

@@ -1,3 +1,35 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa, escrito em C++20, implementa o problema Produtor-Consumidor utilizando `std::promise` e `std::future` como mecanismo de sincronização para identificar o momento em que cada thread produtora termina sua execução. Cada produtor gera números primos e os insere em um buffer compartilhado, enquanto consumidores os processam até receberem um sinal de término.
+
+Parâmetros de Lançamento
+
+O programa recebe três argumentos obrigatórios:
+
+1. `total`: quantidade de números primos a serem produzidos por cada produtor.
+2. `num_produtores`: número de threads produtoras.
+3. `num_consumidores`: número de threads consumidoras.
+
+Exemplo de uso:
+./produtor_consumidor_futures 5 2 2
+
+Esse comando cria 2 produtores, cada um gerando 5 números primos, e 2 consumidores para processar os dados.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread`**: criação de threads manuais para produtores e consumidores.
+- **`std::promise` e `std::future`**: cada produtor recebe uma `std::promise<void>`, permitindo que a thread principal aguarde sua conclusão por meio do respectivo `future`.
+- **`std::mutex`**: proteção de acesso ao buffer compartilhado (`std::queue<int> buffer`).
+- **Sinalização de término**: após todos os produtores finalizarem (sincronizados via `future::wait()`), valores especiais (-1) são inseridos no buffer para indicar o encerramento das threads consumidoras.
+
+Essa abordagem exemplifica uma técnica clássica de sincronização entre threads usando promessas e futuros, sem o uso de variáveis de condição ou cancelamento cooperativo. O controle de término dos consumidores é feito de forma explícita com um marcador de finalização no buffer.
+*/
+
 #include <iostream>
 #include <thread>
 #include <future>
@@ -83,5 +115,7 @@ int main(int argc, char* argv[]) {
 
     for (auto& p : produtores) p.join();
     for (auto& c : consumidores) c.join();
+
+    return 0;
 }
 
