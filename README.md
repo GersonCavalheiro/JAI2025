@@ -29,7 +29,7 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 - `Go/`: exemplos em Go.
 - `Elixir/`: exemplos em Elixir.
 
-Cada diretório de linguagem possui um `Makefile`. O comando 'make' constroi os executáveis (exceto em Elixir) e `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc. É importante observar que os recursos utilizados são os disponibilizados nas últimas versões disponíveis das linguagens C++, Rust, Go e Elixir. Caso não tenha disponível no seu sistema as últimas versões destas linguagens, é sugerido utilizar a imagem docker fornecida.
+Cada diretório de linguagem possui um `Makefile`. O comando `make` constroi os executáveis (exceto em Elixir) e `make run` executa todos os programas com os parâmetros apropriados. Também é possível executar grupos específicos de programas com alvos como `make run-fibo`, `make run-prodcons` etc. É importante observar que os recursos utilizados são os disponibilizados nas últimas versões disponíveis das linguagens C++, Rust, Go e Elixir. Caso não tenha disponível no seu sistema as últimas versões destas linguagens, é sugerido utilizar a imagem docker fornecida.
 
 ## Executando em Container com Docker
 
