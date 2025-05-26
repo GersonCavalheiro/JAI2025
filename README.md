@@ -56,7 +56,7 @@ O repositório fornece um ambiente Docker que já inclui todos as ferramentas ne
 ## Observações
 
 - As implementações focam em clareza e variedade de modelos de concorrência, não sendo otimizadas para benchmarks.
-- Para rodar os programas fora do container, é necessário ter as ferramentas equivalentes instaladas: `g++` com suporte a C++20, `cargo`, `go`, `elixir` e `erl`.
+- Para rodar os programas fora do container, é necessário ter as ferramentas equivalentes instaladas: `g++` com suporte a C++20, Rust, Go e Elixir
 
 ---
 Sociedade Brasileira de Computação (SBC), JAI 2025.
