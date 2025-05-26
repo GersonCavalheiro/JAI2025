@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "fibonacci"
+name = "fibonacci_recursivo"
 version = "0.1.0"
