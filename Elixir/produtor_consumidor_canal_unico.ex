@@ -1,4 +1,44 @@
 defmodule ProdutorConsumidor do
+
+@moduledoc """
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa implementa o problema do produtor/consumidor em Elixir utilizando um único processo centralizado como canal de comunicação entre os produtores e os consumidores. O canal é representado por um processo separado, responsável por armazenar os itens produzidos e atendê-los sob demanda aos consumidores.
+
+Funcionamento
+
+- A função `gerar_primos/1` gera os *n* primeiros números primos.
+- Cada produtor envia os números primos para o canal utilizando mensagens no formato `{:put, item}`.
+- Os consumidores solicitam itens ao canal com mensagens do tipo `{:get, pid}`, e aguardam receber um `{:item, valor}` em resposta.
+- O canal implementa uma fila interna para armazenar os itens recebidos. Caso não haja itens disponíveis quando um consumidor requisita, o canal envia uma resposta `{:retry}`, e o consumidor tenta novamente após uma pequena espera.
+- O canal garante uma política FIFO (first-in, first-out) para o envio dos itens.
+- Após o término dos produtores, o processo principal envia valores negativos como sinal de término para os consumidores e, por fim, encerra o canal com a mensagem `{:shutdown}`.
+
+Exemplo de execução:
+$ elixir produtor_consumidor_canal_unico.exs 5 2 2
+Produtor 1 produziu item 2
+Produtor 2 produziu item 2
+Consumidor 1 consumiu 2
+Consumidor 2 consumiu 2
+...
+Consumidor 1 recebeu sinal de término.
+Consumidor 2 recebeu sinal de término.
+
+Conceitos Aplicados
+
+- Concorrência com múltiplos processos em Elixir.
+- Comunicação assíncrona e isolada via mensagens.
+- Canal centralizado com controle interno de fila.
+- Tratamento explícito de ausência de dados (`{:retry}`).
+- Término coordenado de consumidores e canal.
+
+Esta versão enfatiza o uso de um canal único (representado por um processo) como abstração de buffer, simulando o comportamento de uma fila de mensagens sincronizada sem uso de variáveis compartilhadas ou estruturas externas.
+"""
+
   def eh_primo(n) when n < 2, do: false
   def eh_primo(2), do: true
   def eh_primo(n) do
