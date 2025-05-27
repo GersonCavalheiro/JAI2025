@@ -1,3 +1,41 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Implementação concorrente do cálculo do número de Fibonacci em Go utilizando WaitGroup e mutex para sincronização de acesso a dados compartilhados.
+
+O programa divide o cálculo recursivo de Fibonacci em chamadas concorrentes que são sincronizadas com WaitGroup. Um mutex protege o acesso à variável de resultado acumulado, garantindo que múltiplas goroutines não corrompam a soma parcial.
+
+Parâmetros
+
+- `n`: índice do número Fibonacci a calcular (0 ou maior).
+- `threshold`: limite para optar entre cálculo sequencial e recursivo concorrente, evitando excesso de criação de goroutines.
+
+Uso
+go run fibonacci_waitgroup_mutex.go <n> <threshold>
+
+Exemplo:
+go run fibonacci_waitgroup_mutex.go 10 5
+
+Funcionamento
+
+- Para `n` menor ou igual a 1, retorna `n`.
+- Para `n` menor que `threshold`, calcula sequencialmente para evitar overhead de concorrência.
+- Para `n` maior ou igual a `threshold`, executa chamadas concorrentes para `fib(n-1)` e `fib(n-2)`.
+- Usa mutex para garantir exclusão mútua na atualização da variável compartilhada `res`.
+- Espera as goroutines internas com um WaitGroup local antes de atualizar o resultado.
+
+Conceitos Aplicados
+
+- Concurrency com goroutines.
+- Sincronização com sync.WaitGroup.
+- Proteção de seção crítica com sync.Mutex.
+- Controle de paralelismo via threshold para otimizar desempenho.
+*/
+
 package main
 
 import (

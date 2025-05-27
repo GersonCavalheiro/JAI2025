@@ -1,3 +1,32 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa implementa o padrão produtor/consumidor em Rust utilizando controle manual de sincronização por meio de `Mutex` e `Condvar`, sem o uso de canais. Um vetor compartilhado atua como buffer intermediário entre múltiplos produtores e múltiplos consumidores.
+
+Cada produtor insere no buffer uma lista de números primos previamente gerada, e cada consumidor consome os elementos disponíveis de forma concorrente. Um valor especial (`u32::MAX`) é utilizado como sentinela para indicar a terminação da produção.
+
+Execução com Cargo
+cargo run --release -- <n_primos> <n_produtores> <n_consumidores>
+
+Por exemplo:
+cargo run --release -- 10 2 3
+
+Esse comando gera os 10 primeiros números primos e os distribui entre 2 produtores. Os 3 consumidores retiram valores do buffer até que todos os itens tenham sido processados.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread::spawn`**: criação de threads para produtores e consumidores.
+- **`std::sync::Mutex` e `std::sync::Condvar`**: controle de acesso ao buffer compartilhado e notificação de disponibilidade de dados.
+- **`Arc`**: compartilhamento de dados entre threads com contagem de referências.
+- **Sentinela (`u32::MAX`)**: sinalização explícita de término para cada consumidor.
+
+O programa exemplifica uma implementação clássica de seção crítica com espera condicional, destacando o uso de `Condvar` para suspender consumidores até que haja itens disponíveis no buffer.
+*/
+
 use std::env;
 use std::sync::{Arc, Condvar, Mutex};
 use std::thread::{self};

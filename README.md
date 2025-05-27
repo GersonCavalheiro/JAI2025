@@ -1,6 +1,6 @@
 # Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas — JAI 2025
 
-Este repositório contém o material de apoio ao curso **Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas**, ministrado por **Gerson Geraldo H. Cavalheiro**, **André Rauber Du Bois** e **Alessandro Baldassin** durante as **Jornadas de Atualização em Informática 2025 (JAI 2025)** (Congresso da Sociedade Brasileira de Computação 2025).
+Este repositório contém o material de apoio ao curso **Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas**, ministrado por **Gerson Geraldo H. Cavalheiro**, **André Rauber Du Bois** e **Alexandro Baldassin** durante as **Jornadas de Atualização em Informática 2025 (JAI 2025)** (Congresso da Sociedade Brasileira de Computação 2025).
 
 O conteúdo do repositório está organizado por linguagem de programação e tem como objetivo ilustrar os modelos de concorrência e abstrações de cada linguagem. As implementações buscam destacar os recursos das linguagens C++20, Rust, Go e Elixir, não havendo preocupação específica com desempenho.
 
@@ -10,7 +10,7 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 
 ```bibtex
 @chapter{cavalheiro2025multithread,
-  author    = {Gerson Geraldo H. Cavalheiro and André Rauber Du Bois and Alessandro Baldassin},
+  author    = {Gerson Geraldo H. Cavalheiro and André Rauber Du Bois and Alexandro Baldassin},
   title     = {Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas},
   booktitle = {Anais das Jornadas de Atualização em Informática (JAI 2025)},
   editor    = {Soraia Raupp Musse and Alexandre Santos},

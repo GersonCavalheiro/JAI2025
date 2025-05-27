@@ -1,3 +1,41 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Implementação concorrente do cálculo do número de Fibonacci em Go utilizando WaitGroup para sincronização e operações atômicas para atualização segura da variável compartilhada.
+
+Este programa explora a concorrência com goroutines e proteção da integridade dos dados através da biblioteca sync/atomic, que oferece primitivas de operação atômica eficientes.
+
+Parâmetros
+
+- `n`: índice do número Fibonacci a calcular (inteiro não negativo).
+- `threshold`: limite para alternar entre execução sequencial e concorrente, para evitar overhead excessivo com pequenas chamadas.
+
+Uso
+go run fibonacci_waitgroup_atomic.go <n> <threshold>
+
+Exemplo:
+go run fibonacci_waitgroup_atomic.go 10 5
+
+Funcionamento
+
+- Para `n` igual ou menor que 1, envia o valor diretamente usando operação atômica.
+- Para `n` menor que `threshold`, calcula sequencialmente a série de Fibonacci.
+- Para `n` maior ou igual a `threshold`, cria duas goroutines concorrentes para calcular `fib(n-1)` e `fib(n-2)`.
+- Usa `atomic.AddUint64` para somar resultados de forma segura, evitando condições de corrida.
+- Espera a conclusão das goroutines internas com WaitGroup antes de continuar.
+
+Conceitos Aplicados
+
+- Concurrency com goroutines em Go.
+- Sincronização usando sync.WaitGroup para esperar o término de goroutines.
+- Controle de concorrência granular pelo parâmetro `threshold`.
+- Segurança na atualização da variável compartilhada usando operações atômicas (`sync/atomic`).
+*/
+
 package main
 
 import (

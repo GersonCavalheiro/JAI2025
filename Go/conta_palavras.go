@@ -1,3 +1,36 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa realiza a contagem de palavras em um arquivo texto, utilizando processamento concorrente com goroutines. O texto é dividido em blocos e processado paralelamente por múltiplas goroutines, cada uma responsável por contabilizar as ocorrências de palavras com um tamanho mínimo especificado.
+
+A contagem final é obtida pela agregação dos mapas parciais produzidos por cada thread.
+
+Execução com Go
+go run conta_palavras.go <arquivo.txt> <tamanho_minimo>
+
+Exemplo:
+go run conta_palavras.go texto.txt 4
+
+Saída esperada (exemplo com base no conteúdo de `texto.txt`):
+tempo: 3
+dados: 2
+informacao: 1
+...
+
+Recursos de Programação Concorrente Utilizados
+
+- **Goroutines**: execução paralela da função de contagem de palavras.
+- **`sync.WaitGroup`**: sincronização do término das goroutines.
+- **Canal (`chan map[string]int`)**: comunicação entre as goroutines e a função principal.
+- **Divisão de trabalho estática**: o vetor de palavras é dividido uniformemente entre as goroutines.
+
+Este programa ilustra o uso eficiente de paralelismo para análise textual em Go, com canais e goroutines sendo usados para distribuir e agregar o trabalho de forma controlada.
+*/
+
 package main
 
 import (

@@ -1,3 +1,53 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Implementação concorrente do autômato celular conhecido como "Jogo da Vida" de Conway, usando Go. O terreno quadrado é dividido em D×D blocos (quadrantes), e cada bloco é processado em uma goroutine separada que executa T iterações da simulação localmente.
+
+Cada goroutine preenche inicialmente seu bloco com uma configuração aleatória e, após T iterações, os resultados parciais são coletados para formar o estado final do grid global.
+
+Execução com Go
+go run jogo_da_vida.go <dimensao> <divisoes> <iteracoes>
+
+Onde:
+- `<dimensao>` é a dimensão N do grid quadrado (NxN);
+- `<divisoes>` é o número D de divisões do grid (deve dividir N exatamente);
+- `<iteracoes>` é o número T de iterações da simulação.
+
+Exemplo:
+go run jogo_da_vida.go 20 4 10
+
+Saída esperada (exemplo simplificado):
+Estado inicial:
+.O..O.....
+...O......
+..O..O....
+...
+
+Executando...
+Thread [0,0] finalizou
+Thread [0,1] finalizou
+...
+
+Estado final apos 10 iteracoes:
+...O......
+.O...O....
+..OO......
+...
+
+Recursos de Programação Concorrente Utilizados
+
+- **Goroutines**: cada bloco do grid é processado por uma goroutine independente.
+- **`sync.WaitGroup`**: controle de sincronização para aguardar a conclusão de todas as goroutines.
+- **Canal bufferizado (`chan`)**: comunicação para envio dos blocos processados ao main thread.
+- **Divisão estática do grid**: o grid é particionado em blocos iguais para execução concorrente.
+
+Este programa demonstra como paralelizar simulações baseadas em autômatos celulares, aproveitando a concorrência para acelerar a computação distribuída do grid global.
+*/
+
 package main
 
 import (

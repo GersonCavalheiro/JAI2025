@@ -1,3 +1,30 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa, escrito em Rust, implementa o Jogo da Vida de Conway com paralelismo explícito via `std::thread`. A simulação é dividida em quadrantes, e cada thread é responsável por evoluir seu próprio bloco de células durante um número fixo de iterações. Ao início e ao fim, o conteúdo local de cada thread é copiado para uma grade global protegida por `Mutex`.
+
+Execução com Cargo
+cargo run --release -- <dimensao> <divisoes> <iteracoes>
+
+Por exemplo:
+cargo run --release -- 20 2 10
+
+Esse comando executa o jogo com um grid de 20×20, dividido em 4 quadrantes (2×2), por 10 iterações.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread::spawn`**: criação de threads para processar cada quadrante de forma independente.
+- **`Arc<Mutex<Grid>>`**: grades globais compartilhadas (estado inicial e final), com acesso sincronizado por `Mutex`.
+- Cada thread gera seu estado local, executa a evolução independentemente e copia os dados de volta para a grade compartilhada.
+- A comunicação entre threads é indireta, apenas por meio de regiões de memória compartilhadas com sincronização explícita.
+
+Este exemplo demonstra um modelo de concorrência por divisão de dados (data parallelism) com barreiras implícitas (sincronização via `join`) e controle manual de acesso a recursos compartilhados.
+*/
+
 use rand::Rng;
 use std::env;
 use std::sync::{Arc, Mutex};

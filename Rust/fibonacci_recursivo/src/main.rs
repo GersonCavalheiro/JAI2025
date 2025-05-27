@@ -1,3 +1,27 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa, escrito em Rust, calcula o n-ésimo número de Fibonacci utilizando threads explícitas com `std::thread::spawn`. A cada chamada recursiva em que `n` é maior ou igual ao valor de `limite_sequencial`, duas novas threads são criadas para computar os dois ramos da recursão em paralelo. Abaixo desse limite, o cálculo é feito de forma sequencial.
+
+Execução com Cargo
+cargo run --release -- <n> <limite_sequencial>
+
+Por exemplo:
+cargo run --release -- 30 20
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread::spawn`**: criação manual de threads para computar em paralelo os ramos da recursão.
+- O parâmetro `limite_sequencial` serve para limitar o paralelismo em profundidade, evitando a explosão no número de threads.
+- As chamadas `join()` são usadas para sincronizar os resultados das threads filhas antes de retornar o valor.
+
+Este exemplo destaca o controle explícito sobre a criação e junção de threads, permitindo ilustrar os custos de granularidade do paralelismo e a importância de limitar a profundidade do uso de threads para manter o desempenho e evitar sobrecarga no sistema.
+*/
+
 use std::env;
 use std::thread;
 

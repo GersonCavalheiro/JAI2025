@@ -1,3 +1,30 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa implementa o padrão produtor/consumidor em Rust, utilizando um único canal (`std::sync::mpsc`) para comunicação entre múltiplos produtores e múltiplos consumidores. Cada produtor gera uma lista de números primos e envia os resultados através de um canal compartilhado. Os consumidores recebem os dados do canal de forma concorrente e imprimem os valores consumidos.
+
+Execução com Cargo
+cargo run --release -- <N> <produtores> <consumidores>
+
+Por exemplo:
+cargo run --release -- 10 2 3
+
+Esse comando inicia 2 produtores e 3 consumidores. Cada produtor gera os primeiros 10 números primos e os envia ao canal. Os consumidores retiram os itens e imprimem os valores consumidos.
+
+Recursos de Programação Concorrente Utilizados
+
+- **`std::thread::spawn`**: criação de threads para produtores e consumidores.
+- **`std::sync::mpsc::channel`**: canal de múltiplos produtores e único consumidor.
+- **`Arc<Mutex<Receiver<Item>>>`**: compartilhamento seguro do receptor entre múltiplos consumidores com exclusão mútua.
+- **`drop(tx)`**: fechamento explícito do canal após criação de todos os produtores, para permitir que os consumidores saibam quando parar.
+
+O programa demonstra uma abordagem de sincronização baseada em passagem de mensagens (message passing), com um canal único usado de forma controlada por vários produtores e consumidores sincronizados por mutex.
+*/
+
 use std::sync::{Arc, Mutex, mpsc};
 use std::thread;
 

@@ -1,3 +1,40 @@
+/*
+--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Implementação do problema produtor/consumidor em Go usando um único canal para comunicação.
+
+Neste programa, múltiplos produtores geram números primos e enviam para um canal comum, enquanto múltiplos consumidores recebem e processam esses números. Cada produtor produz uma quantidade fixa de números primos. A sincronização e comunicação entre produtores e consumidores é feita exclusivamente por meio do canal compartilhado.
+
+Execução com Go
+go run produtor_consumidor_canal_unico.go <num_produtores> <num_consumidores> <primos_por_produtor>
+
+Onde:
+- `<num_produtores>` é a quantidade de goroutines produtoras;
+- `<num_consumidores>` é a quantidade de goroutines consumidoras;
+- `<primos_por_produtor>` é a quantidade de números primos que cada produtor deve gerar.
+
+Exemplo:
+go run produtor_consumidor_canal_unico.go 3 2 5
+
+Saída típica:
+Consumidor 0 recebeu 2 do produtor 1
+Consumidor 1 recebeu 3 do produtor 0
+...
+
+Recursos de Programação Concorrente Utilizados
+
+- **Goroutines** para produtores e consumidores concorrentes.
+- **Canal único (channel)** para comunicação segura e sincronizada entre produtores e consumidores.
+- **WaitGroup** para sincronização e garantia de término ordenado do programa.
+- **Fechamento do canal** após todos os produtores finalizarem para sinalizar término aos consumidores.
+
+Este programa demonstra a simplicidade e eficácia do uso de canais para troca de dados em Go, evitando necessidade de mutex ou variáveis de condição.
+*/
+
 package main
 
 import (

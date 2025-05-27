@@ -1,3 +1,37 @@
+/*--------------------------------------
+Este programa faz parte do material que acompanha o curso "Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas", ministrado por "Gerson Geraldo H. Cavalheiro, Alexandro Baldassin, André Rauber Du Bois" nas Jornadas de Atualização de Informática (JAI 2024) e se encontra disponível em https://github.com/GersonCavalheiro/JAI2025. Ao utilizar, referenciar a fonte.
+--------------------------------------
+
+Descrição do Programa
+
+Este programa implementa o problema clássico do Produtor-Consumidor em Go utilizando um canal com buffer e exclusão mútua explícita para controlar contadores de progresso.
+
+Produtores geram números primos e os enviam para um canal com capacidade limitada. Consumidores retiram esses números e realizam um processamento sintético sobre cada item. A produção e o consumo terminam assim que um número total de primos (`N`) é alcançado. A coordenação entre threads é feita com goroutines, canais e mutexes.
+
+Execução com Go
+go run produtor_consumidor_secao_critica.go <N> <produtores> <consumidores>
+
+Exemplo:
+go run produtor_consumidor_secao_critica.go 10 2 2
+
+Saída esperada (ordem pode variar):
+Produtor 1 produziu: 2
+Consumidor 1 consumiu: 2
+Produtor 2 produziu: 3
+Consumidor 2 consumiu: 3
+...
+Todos os produtores e consumidores finalizaram.
+
+Recursos de Programação Concorrente Utilizados
+
+- **Goroutines**: criação de produtores e consumidores concorrentes.
+- **Canal com buffer (`chan int`)**: transporte intermediário dos dados entre produtores e consumidores.
+- **`sync.Mutex`**: proteção de variáveis compartilhadas (`primesGenerated` e `primesConsumed`) contra condições de corrida.
+- **`sync.WaitGroup`**: espera pela finalização de todas as goroutines.
+
+Este programa demonstra como implementar exclusão mútua e comunicação entre threads em Go utilizando os mecanismos nativos da linguagem.
+*/
+
 package main
 
 import (
