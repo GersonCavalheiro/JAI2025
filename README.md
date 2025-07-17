@@ -9,9 +9,10 @@ O conteúdo do repositório está organizado por linguagem de programação e te
 Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo:
 
 ```bibtex
-@chapter{cavalheiro2025multithread,
+@inbook{cavalheiro2025multithread,
   author    = {Gerson Geraldo H. Cavalheiro and André Rauber Du Bois and Alexandro Baldassin},
   title     = {Programação Multithread: Modelos e Abstrações em Linguagens Contemporâneas},
+  chapter   = {3},
   booktitle = {Anais das Jornadas de Atualização em Informática (JAI 2025)},
   editor    = {Soraia Raupp Musse and Alexandre Santos},
   publisher = {Sociedade Brasileira de Computação (SBC)},
@@ -23,6 +24,7 @@ Se você utilizar este material, por favor cite conforme a entrada BibTeX abaixo
 ## Estrutura do Repositório
 
 - `README.md`: este arquivo.
+- `Apresentacao-JAI2025`: material contendo slides aproveitados na apresentação do curso durante o evento.
 - `Docker/`: contém um `Dockerfile` com os compiladores e versões utilizadas no curso.
 - `files/`: contém arquivos auxiliares de entrada para os exemplos
 - `C++/`: exemplos em C++20.
