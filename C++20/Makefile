@@ -12,16 +12,17 @@ cancel_coop_progs := cancelamento_cooperativo
 cancel_colab_progs := fibonacci_cancelamento_colaborativo
 vida_progs := jogo_da_vida
 conta_progs := conta_palavras_blocos
-hello_progs := HelloWorld
+hello_progs := hello_world
+parallel_sum_progs := parallel_sum
 
-.PHONY: all clean run run_prodcons run_fibo run_cancel_coop run_cancel_colab run_vida run_hello run_conta
+.PHONY: all clean run run_prodcons run_fibo run_cancel_coop run_cancel_colab run_vida run_hello run_conta run_parallel_sum
 
 all: $(EXES)
 
 clean:
 	rm -f $(EXES)
 
-run: run_hello run_vida run_prodcons run_fibo run_conta run_cancel_coop run_cancel_colab
+run: run_hello run_vida run_prodcons run_fibo run_conta run_cancel_coop run_cancel_colab run_parallel_sum
 
 run_hello: $(hello_progs)
 	./$(hello_progs)
@@ -43,4 +44,7 @@ run_cancel_coop: $(cancel_coop_progs)
 
 run_cancel_colab: $(cancel_colab_progs)
 	./$(cancel_colab_progs) 30 10
+
+run_parallel_sum: $(parallel_sum_progs)
+	./$(parallel_sum_progs)
 

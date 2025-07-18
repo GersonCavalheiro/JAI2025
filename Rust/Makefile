@@ -1,7 +1,7 @@
 dirs := $(wildcard */)
 
 .PHONY: all build run clean \
-	run-hello run-vida run-prodcons run-fibo run-conta \
+	run-hello run-vida run-prodcons run-fibo run-conta run-parallel_sum\
 	run-all
 
 build:
@@ -34,7 +34,11 @@ run-conta:
 	@echo "Running conta_palavras with parameters: anahy.txt 5"
 	@cargo run --release --manifest-path conta_palavras/Cargo.toml -- ../files/anahy.txt 5
 
-run: run-hello run-vida run-prodcons run-fibo run-conta
+run-parallel_sum:
+	@echo "Running parallel_sum"
+	@cargo run --release --manifest-path parallel_sum/Cargo.toml
+
+run: run-hello run-vida run-prodcons run-fibo run-conta run-parallel_sum
 
 clean:
 	@for d in $(dirs); do \

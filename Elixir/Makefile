@@ -8,10 +8,12 @@ build:
 
 clean:
 	@echo "Nada para limpar para arquivos .ex simples."
+	@echo "Limpando arquivos do projeto parallel_sum (mix)..."
+	@rm -rf parallel_sum/_build parallel_sum/deps parallel_sum/.elixir_ls
 
 run: run-all
 
-run-all: run-hello run-vida run-prodcons run-fibo run-conta
+run-all: run-hello run-vida run-prodcons run-fibo run-conta run-parallel_sum
 
 run-hello:
 	@echo "===> hello_world"
@@ -38,4 +40,8 @@ run-fibo:
 run-conta:
 	@echo "===> conta_palavras anahy.txt 1000"
 	@elixir conta_palavras.ex ../files/anahy.txt 1000
+
+run-parallel_sum:
+	@echo "===> parallel_sum (com Flow)"
+	@cd parallel_sum && mix deps.get && mix run parallel_sum.exs
 

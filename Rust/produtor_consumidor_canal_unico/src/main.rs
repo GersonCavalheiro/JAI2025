@@ -82,7 +82,7 @@ fn consumidor(id: usize, rx: Arc<Mutex<mpsc::Receiver<Item>>>) {
 
         match item {
             Ok(Item { produtor_id, valor }) => {
-                println!("Consumidor {} consumiu item {}", id, valor);
+                println!("Consumidor {} consumiu item {} do produtor {}", id, valor, produtor_id );
             }
             Err(_) => {
                 println!("Consumidor {} concluiu", id);
